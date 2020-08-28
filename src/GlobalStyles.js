@@ -1,10 +1,16 @@
 import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyles = createGlobalStyle`
-body, #root {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-    font-family: "Roboto", sans-serif;
+  html {
+  height: 100%;
+}
+body,
+#root {
+  display: flex;
+  min-height: 100%;
+  flex-direction: column;
+  font-family: "Arial", sans-serif;
+  background-color: #41B3A1;
+
 }
 `;

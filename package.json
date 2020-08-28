@@ -12,8 +12,10 @@
     "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-loading-skeleton": "^2.1.1",
     "react-scripts": "3.4.3",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.1.1",
+    "styled-icons": "^10.18.0"
   },
   "scripts": {
     "start": "react-scripts start",
