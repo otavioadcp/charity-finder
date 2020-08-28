@@ -56,6 +56,7 @@ export const HasNextButton = styled.span`
   color: red;
   font-weight: 500;
   font-size: 1rem;
+  transition: display 2s ease-in;
 `;
 
 export const StyledButton = styled(Button)`

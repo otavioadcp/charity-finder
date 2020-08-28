@@ -38,11 +38,24 @@ const StyledGithub = styled(Github)`
   }
 `;
 
+const StyledCredit = styled.span`
+  font-size: 0.8rem;
+  font-weight: lighter;
+`;
+
 export default function AppFooter() {
   return (
     <Container>
-      <span>Created by OtavioADCP just for study. </span>
-
+      <StyledCredit>Created by OtavioADCP just for study. </StyledCredit>
+      <StyledCredit>
+        icon by{" "}
+        <a
+          href="https://www.flaticon.com/br/autores/photo3idea-studio"
+          title="photo3idea_studio"
+        >
+          photo3idea_studio
+        </a>{" "}
+      </StyledCredit>
       <MediaIcons>
         <GlobalGiving>
           Made with the{" "}

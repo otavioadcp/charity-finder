@@ -39,7 +39,6 @@ function AppHeader({ countryMethods, projectsMethods }) {
 
   return (
     <Container>
-      <AppTitle>Charity Finder</AppTitle>
       <StyledDiv>
         <StyledSelect
           placeholder="Select country"

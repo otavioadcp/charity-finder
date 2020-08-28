@@ -11,6 +11,7 @@ export const CardContainer = styled.div`
   border-radius: 20px;
   transition: all 0.2s ease;
   background-color: #85cdc8;
+
   :hover {
     z-index: 98;
     transform: scale(1.1);

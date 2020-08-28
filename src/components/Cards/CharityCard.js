@@ -32,21 +32,23 @@ function CharityCard({ data }) {
   }
 
   return (
-    <CardContainer>
-      <ImgCard src={data?.image?.imagelink[4]?.url || data?.imageLink} />
-      <ContactContainer>
-        <NameCard>
-          <StyledIdentity />
-          {" - " + data.title}
-        </NameCard>
-        <AddresCard>
-          <StyledLocationIcon />
-          {data && data.contactAddress
-            ? `- ${data.contactAddress}, ${data.contactPostal} - ${data.contactState}/${data.contactCountry}`
-            : " ---- "}
-        </AddresCard>
-      </ContactContainer>
-    </CardContainer>
+    <a href={data.organization.url} target="_blank">
+      <CardContainer>
+        <ImgCard src={data?.image?.imagelink[4]?.url || data?.imageLink} />
+        <ContactContainer>
+          <NameCard>
+            <StyledIdentity />
+            {" - " + data.title}
+          </NameCard>
+          <AddresCard>
+            <StyledLocationIcon />
+            {data && data.contactAddress
+              ? `- ${data.contactAddress}, ${data.contactPostal} - ${data.contactState}/${data.contactCountry}`
+              : " ---- "}
+          </AddresCard>
+        </ContactContainer>
+      </CardContainer>
+    </a>
   );
 }
 

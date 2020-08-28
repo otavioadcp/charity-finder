@@ -3,8 +3,10 @@ import styled from "styled-components";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   flex: 1;
   justify-content: center;
+  align-items: center;
 `;
 
 const StyledSpan = styled.span`
@@ -16,6 +18,7 @@ const StyledSpan = styled.span`
 export default function EmptyContent({ data }) {
   return (
     <Container>
+      <StyledSpan>Charity Finder</StyledSpan>
       <StyledSpan>
         {data && data.numberFound === 0
           ? "No Results"
