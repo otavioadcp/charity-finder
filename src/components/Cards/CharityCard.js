@@ -33,7 +33,7 @@ function CharityCard({ data }) {
 
   return (
     <CardContainer>
-      <ImgCard src={data?.image?.imagelink[4]?.url} />
+      <ImgCard src={data?.image?.imagelink[4]?.url || data?.imageLink} />
       <ContactContainer>
         <NameCard>
           <StyledIdentity />
@@ -41,7 +41,9 @@ function CharityCard({ data }) {
         </NameCard>
         <AddresCard>
           <StyledLocationIcon />
-          {`- ${data.contactAddress}, ${data.contactPostal} - ${data.contactState}/${data.contactCountry}`}
+          {data && data.contactAddress
+            ? `- ${data.contactAddress}, ${data.contactPostal} - ${data.contactState}/${data.contactCountry}`
+            : " ---- "}
         </AddresCard>
       </ContactContainer>
     </CardContainer>

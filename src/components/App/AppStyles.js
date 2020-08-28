@@ -7,20 +7,21 @@ export const AppContainer = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: 2rem 2rem 1rem 2rem;
 `;
 
 export const AppHeader = styled.div`
   display: flex;
+  flex-direction: column;
   padding: 1rem 1rem 1rem 1rem;
   justify-content: space-between;
   align-items: center;
   background-color: #85cdc9;
-  border-radius: 10px;
 `;
 
 export const AppTitle = styled.span`
-  height: 3rem;
+  height: 5rem;
+  min-width: 100%;
+  display: block;
   text-align: center;
   font-size: 2rem;
   font-weight: bold;
@@ -58,5 +59,5 @@ export const HasNextButton = styled.span`
 `;
 
 export const StyledButton = styled(Button)`
-  background-color: red;
+  font-weight: bold;
 `;

@@ -1,13 +1,8 @@
 import React from "react";
-import { AppContainer as Container, AppTitle } from "./AppStyles";
+import { AppContainer as Container } from "./AppStyles";
 
 function AppContainer({ children }) {
-  return (
-    <Container>
-      <AppTitle>Charity Finder</AppTitle>
-      {children}
-    </Container>
-  );
+  return <Container>{children}</Container>;
 }
 
 export default AppContainer;

@@ -1,19 +1,21 @@
 import React from "react";
 import { AppContent as Container } from "./AppStyles";
-import useProjects from "../../hooks/useProjects";
 import ContentSkeleton from "../Cards/CharityCardSkeleton";
 import CharityCard from "../Cards/CharityCard";
+import EmptyContent from "./EmptyContent";
 
-function AppContent({ data }) {
-  const { loadingContent } = useProjects();
+function AppContent({ projectsMethods }) {
   return (
     <Container>
-      {!loadingContent ? (
-        data ? (
-          data.project.map((project) => (
+      {!projectsMethods.loadingContent ? (
+        projectsMethods.projects &&
+        projectsMethods.projects.numberFound !== 0 ? (
+          projectsMethods.projects.project.map((project) => (
             <CharityCard key={project.id} data={project} />
           ))
-        ) : null
+        ) : (
+          <EmptyContent data={projectsMethods.projects} />
+        )
       ) : (
         <ContentSkeleton />
       )}

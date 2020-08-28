@@ -4,10 +4,57 @@ import api from "../api";
 export default function useProjects() {
   const [theme, setTheme] = useState([]);
   const [region, setRegion] = useState(null);
+  const [error, setError] = useState(null);
+  const [countryCode, setCountryCode] = useState(null);
   const [loading, setLoading] = useState(false);
   const [loadingContent, setLoadingContent] = useState(false);
   const [projects, setProjects] = useState(null);
   const [nextProjectId, setNextProjectId] = useState(null);
+
+  const searchProjectsByCountry = useCallback(
+    async (code) => {
+      setLoadingContent(true);
+      setLoading(true);
+      try {
+        const result = await api.get(
+          `/api/public/projectservice/countries/${countryCode}/projects/summary?api_key=53ec46b9-fe86-46ee-a102-29f505ef50fb${
+            nextProjectId ? `&nextProjectId=${nextProjectId}` : ""
+          }`
+        );
+        setProjects(result.data.projects);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setLoadingContent(false);
+      }
+    },
+    [countryCode, nextProjectId]
+  );
+
+  const searchProjectsByTheme = useCallback(async () => {
+    setLoadingContent(true);
+    try {
+      const result = await api.get(
+        `/api/public/projectservice/themes/${region}/projects/active?api_key=53ec46b9-fe86-46ee-a102-29f505ef50fb${
+          nextProjectId ? `&nextProjectId=${nextProjectId}` : ""
+        }`
+      );
+      setProjects(result.data.projects);
+    } catch (e) {
+      setError(e);
+    } finally {
+      setLoadingContent(false);
+    }
+  }, [region, nextProjectId]);
+
+  function handleChangeTheme(value) {
+    setRegion(value);
+  }
+
+  function onNextProjects(value) {
+    setLoadingContent(true);
+    setNextProjectId(value);
+  }
 
   useEffect(() => {
     setLoading(true);
@@ -17,35 +64,32 @@ export default function useProjects() {
       );
       setTheme(result.data.themes.theme);
     }
-    teste();
-    setLoading(false);
+    try {
+      teste();
+    } catch (e) {
+      setError(e);
+    } finally {
+      setLoading(false);
+    }
   }, []);
-
-  const getProjects = useCallback(async () => {
-    setLoadingContent(true);
-    const result = await api.get(
-      `/api/public/projectservice/themes/${region}/projects/active?api_key=53ec46b9-fe86-46ee-a102-29f505ef50fb${
-        nextProjectId ? `&nextProjectId=${nextProjectId}` : ""
-      }`
-    );
-    setProjects(result.data.projects);
-    setLoadingContent(false);
-  }, [region, nextProjectId]);
 
   useEffect(() => {
     if (region) {
-      getProjects();
+      searchProjectsByTheme();
     }
-  }, [region, getProjects]);
+  }, [region, searchProjectsByTheme]);
 
-  function handleChange(value) {
-    console.log("DISPAROU");
-    setRegion(value);
-  }
+  useEffect(() => {
+    if (countryCode) {
+      searchProjectsByCountry();
+    }
+  }, [countryCode, searchProjectsByCountry]);
 
-  function onNextProjects(value) {
-    setLoadingContent(true);
-    setNextProjectId(value);
+  function handleCountryCode(value) {
+    let code = value && value.toString();
+    code = value && value.substring(0, 2);
+    code = value && code.toUpperCase();
+    setCountryCode(code);
   }
 
   return {
@@ -53,8 +97,10 @@ export default function useProjects() {
     loading,
     loadingContent,
     projects,
-    handleChange,
+    handleChangeTheme,
     region,
     onNextProjects,
+    handleCountryCode,
+    error,
   };
 }

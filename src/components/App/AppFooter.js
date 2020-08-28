@@ -6,7 +6,7 @@ const Container = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0px 6px;
+  padding: 0px 1rem;
   background-color: #85cdc8;
   height: 3rem;
 `;
@@ -32,15 +32,6 @@ const GlobalGiving = styled.span`
 const StyledGithub = styled(Github)`
   height: 1.7rem;
   width: 1.7rem;
-  :hover {
-    cursor: pointer;
-    transform: scale(1.1);
-  }
-`;
-
-const StyledIcon = styled.i`
-  max-height: 1.5rem;
-  margin: 0px 5px;
   :hover {
     cursor: pointer;
     transform: scale(1.1);

@@ -3,28 +3,25 @@ import AppContainer from "./components/App/AppContainer";
 import AppHeader from "./components/App/AppHeader";
 import AppContent from "./components/App/AppContent";
 import useProjects from "./hooks/useProjects";
+import useCountrys from "./hooks/useCountrys";
+
 import AppFooter from "./components/App/AppFooter";
 import CharityCardSkeleton from "./components/Cards/CharityCardSkeleton";
 function App() {
-  const {
-    projects,
-    handleChange,
-    onNextProjects,
-    loadingContent,
-  } = useProjects();
-  console.log("PROJETOS", projects);
+  const projectsMethods = useProjects();
+  const countryMethods = useCountrys();
+
   return (
     <>
       <AppContainer>
         <AppHeader
-          onNextProjects={onNextProjects}
-          handleChange={handleChange}
-          projects={projects}
+          countryMethods={countryMethods}
+          projectsMethods={projectsMethods}
         />
-        {loadingContent ? (
+        {projectsMethods.loadingContent ? (
           <CharityCardSkeleton />
         ) : (
-          <AppContent data={projects} />
+          <AppContent projectsMethods={projectsMethods} />
         )}
       </AppContainer>
       <AppFooter />
