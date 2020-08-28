@@ -27,10 +27,6 @@ const StyledIdentity = styled(PermIdentity)`
 `;
 
 function CharityCard({ data }) {
-  if (data && data.image && data.image.imageLink) {
-    console.log("IMAGE", data.image.imageLink);
-  }
-
   return (
     <a href={data.organization.url} target="_blank">
       <CardContainer>

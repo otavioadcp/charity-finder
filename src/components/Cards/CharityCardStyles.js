@@ -17,6 +17,7 @@ export const CardContainer = styled.div`
   transition: all 0.2s ease;
   :hover {
     z-index: 98;
+    box-shadow: 10px 10px 22px -3px rgba(0, 0, 0, 0.75);
     transform: scale(1.1);
   }
 `;
